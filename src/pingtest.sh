@@ -8,6 +8,7 @@
 cd ./Dropbox 2>/dev/null
 
 PINGURL='myhost.com'
+LOG_FOLDER='ping-test'
 
 LOG_UIO_WAKEUP="$(date +%Y-%m-uio-wakeup.txt)"
 LOG_UIO_BASELINE="$(date +%Y-%m-uio-baseline.txt)"
@@ -23,7 +24,7 @@ DAT_UIO_BASELINE_TIME="$(date +%Y-%m-uio-baseline-time.txt)"
 
 TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 
-echo "--- Pingtest running, started at ${TIME_NOW}"
+source ./dropbox.sh
 
 which ping |grep system32 > /dev/null
 if [ ${?} -eq 0 ]  # grep return code: match = 0, not found = 1
@@ -37,6 +38,9 @@ else
   PINGOPTION='-c'
 fi
 
+echo "--- Pingtest running, started at ${TIME_NOW}"
+mkdir -p "${LOG_FOLDER}"
+
 ping "${PINGOPTION}" 3 "${PINGURL}" > uio_wakeup.txt
 echo "$(date +'%a %B %e %T %Z %Y')" > uio_wakeup_time.txt
 sleep 2
@@ -44,35 +48,47 @@ ping "${PINGOPTION}" 20 "${PINGURL}" > uio_baseline.txt
 echo "$(date +'%a %B %e %T %Z %Y')" > uio_baseline_time.txt
 
 
-echo '==============================' >> "${LOG_UIO_WAKEUP}"
-cat uio_wakeup_time.txt >> "${LOG_UIO_WAKEUP}"
-echo '==============================' >> "${LOG_UIO_WAKEUP}"
-cat uio_wakeup.txt >> "${LOG_UIO_WAKEUP}"
+echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+cat uio_wakeup_time.txt >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+cat uio_wakeup.txt >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
 
 
-echo '==============================' >> "${LOG_UIO_BASELINE}"
-cat uio_baseline_time.txt >> "${LOG_UIO_BASELINE}"
-echo '==============================' >> "${LOG_UIO_BASELINE}"
-cat uio_baseline.txt >> "${LOG_UIO_BASELINE}"
+echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+cat uio_baseline_time.txt >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+cat uio_baseline.txt >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
 
 
 if [ ${PINGVERSION} -eq 32 ]
 then
   # from Windows ping output
-  grep Average uio_wakeup.txt >> "${DAT_UIO_WAKEUP}"
-  grep Average uio_baseline.txt >> "${DAT_UIO_BASELINE}"
+  grep Average uio_wakeup.txt >> "${LOG_FOLDER}/${DAT_UIO_WAKEUP}"
+  grep Average uio_baseline.txt >> "${LOG_FOLDER}/${DAT_UIO_BASELINE}"
 else
   # from Linux ping output
   grep rtt uio_wakeup.txt |cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|\
-    tr / " " >> "${DAT_UIO_WAKEUP}"
+    tr / " " >> "${LOG_FOLDER}/${DAT_UIO_WAKEUP}"
   grep rtt uio_baseline.txt |cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|\
-    tr / " " >> "${DAT_UIO_BASELINE}"
+    tr / " " >> "${LOG_FOLDER}/${DAT_UIO_BASELINE}"
 fi
 
 
-grep loss uio_wakeup.txt  >> "${DAT_UIO_WAKEUP_LOSS}"
-grep loss uio_baseline.txt  >> "${DAT_UIO_BASELINE_LOSS}"
+grep loss uio_wakeup.txt  >> "${LOG_FOLDER}/${DAT_UIO_WAKEUP_LOSS}"
+grep loss uio_baseline.txt  >> "${LOG_FOLDER}/${DAT_UIO_BASELINE_LOSS}"
 
 
-cat uio_wakeup_time.txt >> "${DAT_UIO_WAKEUP_TIME}"
-cat uio_baseline_time.txt >> "${DAT_UIO_BASELINE_TIME}"
+cat uio_wakeup_time.txt >> "${LOG_FOLDER}/${DAT_UIO_WAKEUP_TIME}"
+cat uio_baseline_time.txt >> "${LOG_FOLDER}/${DAT_UIO_BASELINE_TIME}"
+
+dropbox_upload "${LOG_UIO_WAKEUP}"
+dropbox_upload "${LOG_UIO_BASELINE}"
+
+dropbox_upload "${DAT_UIO_WAKEUP}"
+dropbox_upload "${DAT_UIO_BASELINE}"
+
+dropbox_upload "${DAT_UIO_WAKEUP_LOSS}"
+dropbox_upload "${DAT_UIO_BASELINE_LOSS}"
+
+dropbox_upload "${DAT_UIO_WAKEUP_TIME}"
+dropbox_upload "${DAT_UIO_BASELINE_TIME}"
