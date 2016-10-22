@@ -48,16 +48,24 @@ ping "${PINGOPTION}" 20 "${PINGURL}" > uio_baseline.txt
 echo "$(date +'%a %B %e %T %Z %Y')" > uio_baseline_time.txt
 
 
-echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
-cat uio_wakeup_time.txt >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
-echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
-cat uio_wakeup.txt >> "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+echo '=================================' >> \
+  "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+cat uio_wakeup_time.txt >> \
+  "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+echo '=================================' >> \
+  "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
+cat uio_wakeup.txt >> \
+  "${LOG_FOLDER}/${LOG_UIO_WAKEUP}"
 
 
-echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
-cat uio_baseline_time.txt >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
-echo '==============================' >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
-cat uio_baseline.txt >> "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+  echo '=================================' >> \
+    "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+  cat uio_baseline_time.txt >> \
+    "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+  echo '=================================' >> \
+    "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
+  cat uio_baseline.txt >> \
+    "${LOG_FOLDER}/${LOG_UIO_BASELINE}"
 
 
 if [ ${PINGVERSION} -eq 32 ]
@@ -67,10 +75,12 @@ then
   grep Average uio_baseline.txt >> "${LOG_FOLDER}/${DAT_UIO_BASELINE}"
 else
   # from Linux ping output
-  grep rtt uio_wakeup.txt |cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|\
-    tr / " " >> "${LOG_FOLDER}/${DAT_UIO_WAKEUP}"
-  grep rtt uio_baseline.txt |cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|\
-    tr / " " >> "${LOG_FOLDER}/${DAT_UIO_BASELINE}"
+  grep rtt uio_wakeup.txt |\
+    cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|tr / " " >> \
+    "${LOG_FOLDER}/${DAT_UIO_WAKEUP}"
+  grep rtt uio_baseline.txt |\
+    cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|tr / " " >> \
+    "${LOG_FOLDER}/${DAT_UIO_BASELINE}"
 fi
 
 

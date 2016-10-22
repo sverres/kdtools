@@ -18,8 +18,10 @@ echo "--- IP-address files in subfolder ${LOG_FOLDER}"
 mkdir -p "${LOG_FOLDER}"
 
 
-echo "$(curl -s -S myip.dnsomatic.com)" >>  "${LOG_FOLDER}"/"${LOG_IP_ADDRESS}"
-echo "$(date +'%a %B %e %T %Z %Y')" >> "${LOG_FOLDER}"/"${LOG_IP_ADDRESS_TIME}"
+echo "$(curl -s -S myip.dnsomatic.com/login.asp)" >> \
+  "${LOG_FOLDER}"/"${LOG_IP_ADDRESS}"
+echo "$(date +'%a %B %e %T %Z %Y')" >> \
+  "${LOG_FOLDER}"/"${LOG_IP_ADDRESS_TIME}"
 
 
 dropbox_upload ${LOG_IP_ADDRESS}
