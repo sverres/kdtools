@@ -16,21 +16,21 @@ YESTERDAY_MONTH=$(date --date='28 days ago' +%m)
 source ./dropbox.sh
 
 move_to_archive () {
-    LOG_FOLDER="${1}"
+  LOG_FOLDER="${1}"
 
-    mkdir -p "${LOG_FOLDER}"
+  mkdir -p "${LOG_FOLDER}"
 
-    cd "${LOG_FOLDER}"
+  cd "${LOG_FOLDER}"
 
-    mkdir -p "${YESTERDAY_YEAR}"
+  mkdir -p "${YESTERDAY_YEAR}"
 
-    # sample command: mv 2016-10-ip-adress-time-txt 2016
-    mv  "${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"* "${YESTERDAY_YEAR}"
+  # sample command: mv 2016-10-ip-adress-time-txt 2016
+  mv  "${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"* "${YESTERDAY_YEAR}"
 
-    cd ..
+  cd ..
 }
 
 for FOLDER in $LOG_FOLDERS; do
-    move_to_archive "${FOLDER}"
-    dropbox_move "${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"* "${FOLDER}/${YESTERDAY_YEAR}"
+  move_to_archive "${FOLDER}"
+  dropbox_move "${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-*.txt" "${FOLDER}/${YESTERDAY_YEAR}"
 done
