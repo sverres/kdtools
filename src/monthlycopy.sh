@@ -24,8 +24,6 @@ move_to_archive () {
 
     mkdir -p "${YESTERDAY_YEAR}"
 
-    echo "abc" >> $(date --date='28 days ago' +%Y-%m-)dill.txt
-
     # sample command: mv 2016-10-ip-adress-time-txt 2016
     mv  "${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"* "${YESTERDAY_YEAR}"
 
