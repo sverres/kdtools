@@ -32,4 +32,5 @@ move_to_archive () {
 
 for FOLDER in $LOG_FOLDERS; do
     move_to_archive "${FOLDER}"
+    dropbox_move "${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"* "${FOLDER}/${YESTERDAY_YEAR}"
 done
