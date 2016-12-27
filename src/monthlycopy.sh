@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# copy  log files to archive folder
+# copy log files to archive folder
 #
-# run by cron the 1st on evry month
+# run by cron the 1st of every month
 #
 # sverre.stikbakke@ntnu.no 01.11.2016
 #
@@ -23,4 +23,5 @@ mkdir -p "${YESTERDAY_YEAR}"
 
 echo "abc" >> $(date --date='1 days ago' +%Y-%m-)dill.txt
 
+# sample command: mv 2016-10-ip-adress-time-txt 2016
 mv  "${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"* "${YESTERDAY_YEAR}"
