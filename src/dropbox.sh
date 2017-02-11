@@ -23,21 +23,3 @@ dropbox_upload () {
   >"$(basename ${UPLOAD_FILE} .txt).json"\
   2>/dev/null
 }
-
-dropbox_move () {
-  FROM_PATH="${1}"
-  TO_PATH="${2}"
-
-  for logfile in $FROM_PATH; do
-    curl -X POST https://api.dropboxapi.com/2/files/move \
-      --header "Authorization: Bearer ${DROPBOX_TOKEN}"\
-      --header "Content-Type: application/json" \
-      --data "{\
-        \"from_path\": \"/${logfile}\",\
-        \"to_path\": \"/${TO_PATH}\",\
-        \"allow_shared_folder\": false,\
-        \"autorename\": false}"# \
-        # >"$(basename ${FROM_PATH}).json" #\
-        # 2>/dev/null
-      done
-}
