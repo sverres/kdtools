@@ -5,7 +5,7 @@
 # sverre.stikbakke@ntnu.no 02.05.2016
 #
 
-cd ./Dropbox 2>/dev/null
+cd "./Dropbox" 2> '/dev/null'
 
 PINGURL='myhost.com'
 LOG_FOLDER='ping-test'

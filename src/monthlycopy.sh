@@ -7,7 +7,7 @@
 # sverre.stikbakke@ntnu.no 11.02.2016
 #
 
-cd ./Dropbox 2>/dev/null
+cd "./Dropbox" 2> '/dev/null'
 
 YESTERDAY_YEAR=$(date --date='15 days ago' +%Y)
 YESTERDAY_MONTH=$(date --date='15 days ago' +%m)
@@ -19,14 +19,15 @@ move_to_archive () {
 
   mkdir -p "${YESTERDAY_YEAR}"
 
-  # sample mv command: mv 2017-01-ip-adress-time-txt 2017
-  mv  "${YESTERDAY_YEAR}"-"${YESTERDAY_MONTH}"-*.txt "${YESTERDAY_YEAR}" 2>/dev/null
+  # sample mv command: mv 2017-01-ip-adress-time.txt 2017
+  mv "${YESTERDAY_YEAR}"-"${YESTERDAY_MONTH}"-*.txt "${YESTERDAY_YEAR}" \
+     2> '/dev/null'
 
-  cd ..
+  cd ".."
 }
 
 move_to_archive 'isp-ip-address'
 move_to_archive 'ping-test'
 move_to_archive 'speed-test'
 
-mv *.json dropbox-logs 2>/dev/null
+mv *.json "dropbox-logs" 2> '/dev/null'

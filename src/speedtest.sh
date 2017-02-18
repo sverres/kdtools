@@ -6,7 +6,7 @@
 # sverre.stikbakke@ntnu.no 22.10.2016
 #
 
-cd ./Dropbox 2>/dev/null
+cd "./Dropbox" 2> '/dev/null'
 
 LOG_FOLDER='speed-test'
 
@@ -27,9 +27,9 @@ echo "--- Speedtest running, started at ${TIME_NOW}"
 mkdir -p "${LOG_FOLDER}"
 
 echo '' > "${SPEEDTEST_TMP}"
-echo '=================================' >> "${SPEEDTEST_TMP}"
+echo '==================================' >> "${SPEEDTEST_TMP}"
 echo "${TIME_NOW}" >> "${SPEEDTEST_TMP}"
-echo '=================================' >> "${SPEEDTEST_TMP}"
+echo '==================================' >> "${SPEEDTEST_TMP}"
 
 ./pyspeedtest.py  >> "${SPEEDTEST_TMP}"
 
