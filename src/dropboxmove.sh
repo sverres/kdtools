@@ -29,7 +29,7 @@ dropbox_mkdir () {
   --data "{\
   \"path\": \"${NEW_YEAR_PATH}\",\
   \"autorename\": false}"\
-  > "${FOLDER}/${NEW_YEAR}.json"\
+  > "${NEW_YEAR}-${FOLDER}.json"\
   2> '/dev/null'
 }
 

@@ -14,6 +14,7 @@ YESTERDAY_MONTH=$(date --date='15 days ago' +%m)
 
 move_to_archive () {
   LOG_FOLDER="${1}"
+  
   mkdir -p "${LOG_FOLDER}"
   cd "${LOG_FOLDER}"
 
