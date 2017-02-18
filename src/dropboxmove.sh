@@ -14,7 +14,7 @@ cd "./Dropbox" 2> '/dev/null'
 source "./dropbox_token"
 
 YESTERDAY_YEAR="$(date --date='15 days ago' +%Y)"
-YESTERDAY_MONTH="$(date --date='1 days ago' +%m)"
+YESTERDAY_MONTH="$(date --date='15 days ago' +%m)"
 
 
 dropbox_mkdir () {
@@ -70,17 +70,17 @@ dropbox_move "speed-test" "upload.txt"
 
 dropbox_mkdir "ping-test" "$YESTERDAY_YEAR"
 
-dropbox_move "ping-test" "uio-wakeup.txt"
-dropbox_move "ping-test" "uio-baseline.txt"
+dropbox_move "ping-test" "wakeup.txt"
+dropbox_move "ping-test" "baseline.txt"
 
-dropbox_move "ping-test" "uio-wakeup-dat.txt"
-dropbox_move "ping-test" "uio-baseline-dat.txt"
+dropbox_move "ping-test" "wakeup-dat.txt"
+dropbox_move "ping-test" "baseline-dat.txt"
 
-dropbox_move "ping-test" "uio-wakeup-loss.txt"
-dropbox_move "ping-test" "uio-baseline-loss.txt"
+dropbox_move "ping-test" "wakeup-loss.txt"
+dropbox_move "ping-test" "baseline-loss.txt"
 
-dropbox_move "ping-test" "uio-wakeup-time.txt"
-dropbox_move "ping-test" "uio-baseline-time.txt"
+dropbox_move "ping-test" "wakeup-time.txt"
+dropbox_move "ping-test" "baseline-time.txt"
 
 
 mv *.json 'dropbox-logs' 2> '/dev/null'
