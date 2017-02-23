@@ -8,10 +8,10 @@ Log files placed in Dropbox folder and uploaded using Dropbox API.
 ## Bash scripts
 
 ```code
-ipreport.sh     - report external IP address
-speedtest.sh    - report download speed
-pingtest.sh     - report ping times: wakeup times and average times
-dropbox.sh      - dropbox_upload function
-dropboxmove.sh  - dropbox_move and dropbox_mkdir functons
-dropbox_token   - dropbox API token to be placed here
+ipreport.sh       - report external IP address
+speedtest.sh      - report download speed
+pingtest.sh       - report ping times: wakeup times and average times
+dropbox.sh        - dropbox_upload function
+monthlyarchive.sh - dropbox_move and dropbox_mkdir functons
+dropbox_token     - dropbox API token to be placed here
 ```
