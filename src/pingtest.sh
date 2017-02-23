@@ -7,11 +7,16 @@
 
 cd './Dropbox' 2> '/dev/null'
 
-
 # import ${PINGURL}
 source './pingurl'
 
+# import dropbox_upload function
+source './dropbox.sh'
+
+
 LOG_FOLDER='ping-test'
+LOG_DROPBOX='dropbox-logs'
+
 
 LOG_WAKEUP="$(date +%Y-%m-wakeup.txt)"
 LOG_BASELINE="$(date +%Y-%m-baseline.txt)"
@@ -27,10 +32,7 @@ DAT_BASELINE_TIME="$(date +%Y-%m-baseline-time.txt)"
 
 TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 
-source './dropbox.sh'
-
-which ping |grep system32 > /dev/null
-if [ ${?} -eq 0 ]  # grep return code: match = 0, not found = 1
+if which ping |grep 'system32' > /dev/null
 then
   # echo windows
   PINGVERSION=32
@@ -41,34 +43,30 @@ else
   PINGOPTION='-c'
 fi
 
+
 echo "--- Pingtest running, started at ${TIME_NOW}"
 mkdir -p "${LOG_FOLDER}"
 
 ping "${PINGOPTION}" 3 "${PINGURL}" > 'wakeup.txt'
-echo "$(date +'%a %B %e %T %Z %Y')" > 'wakeup_time.txt'
+date +'%a %B %e %T %Z %Y' > 'wakeup_time.txt'
 sleep 2
 ping "${PINGOPTION}" 20 "${PINGURL}" > 'baseline.txt'
-echo "$(date +'%a %B %e %T %Z %Y')" > 'baseline_time.txt'
+date +'%a %B %e %T %Z %Y' > 'baseline_time.txt'
 
 
-echo '=================================' >> \
-  "${LOG_FOLDER}/${LOG_WAKEUP}"
-cat 'wakeup_time.txt' >> \
-  "${LOG_FOLDER}/${LOG_WAKEUP}"
-echo '=================================' >> \
-  "${LOG_FOLDER}/${LOG_WAKEUP}"
-cat 'wakeup.txt' >> \
-  "${LOG_FOLDER}/${LOG_WAKEUP}"
+{
+  echo '================================='
+  cat 'wakeup_time.txt'
+  echo '================================='
+  cat 'wakeup.txt'
+} >> "${LOG_FOLDER}/${LOG_WAKEUP}"
 
-
-echo '=================================' >> \
-  "${LOG_FOLDER}/${LOG_BASELINE}"
-cat 'baseline_time.txt' >> \
-  "${LOG_FOLDER}/${LOG_BASELINE}"
-echo '=================================' >> \
-  "${LOG_FOLDER}/${LOG_BASELINE}"
-cat 'baseline.txt' >> \
-  "${LOG_FOLDER}/${LOG_BASELINE}"
+{
+  echo '================================='
+  cat 'baseline_time.txt'
+  echo '================================='
+  cat 'baseline.txt'
+} >> "${LOG_FOLDER}/${LOG_BASELINE}"
 
 
 if [ ${PINGVERSION} -eq 32 ]
@@ -86,13 +84,12 @@ else
     "${LOG_FOLDER}/${DAT_BASELINE}"
 fi
 
-
 grep 'loss' 'wakeup.txt'  >> "${LOG_FOLDER}/${DAT_WAKEUP_LOSS}"
 grep 'loss' 'baseline.txt'  >> "${LOG_FOLDER}/${DAT_BASELINE_LOSS}"
 
-
 cat 'wakeup_time.txt' >> "${LOG_FOLDER}/${DAT_WAKEUP_TIME}"
 cat 'baseline_time.txt' >> "${LOG_FOLDER}/${DAT_BASELINE_TIME}"
+
 
 dropbox_upload "${LOG_WAKEUP}"
 dropbox_upload "${LOG_BASELINE}"
@@ -105,3 +102,5 @@ dropbox_upload "${DAT_BASELINE_LOSS}"
 
 dropbox_upload "${DAT_WAKEUP_TIME}"
 dropbox_upload "${DAT_BASELINE_TIME}"
+
+mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'

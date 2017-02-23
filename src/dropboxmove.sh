@@ -9,9 +9,9 @@
 
 cd './Dropbox' 2> '/dev/null'
 
-
 # import ${DROPBOX_TOKEN}
 source './dropbox_token'
+
 
 YESTERDAY_YEAR="$(date --date='15 days ago' +%Y)"
 YESTERDAY_MONTH="$(date --date='15 days ago' +%m)"
@@ -58,12 +58,13 @@ dropbox_move () {
 }
 
 
-dropbox_mkdir 'isp-ip-address' "$YESTERDAY_YEAR"
+dropbox_mkdir 'isp-ip-address' "${YESTERDAY_YEAR}"
 
 dropbox_move  'isp-ip-address' 'ip-address.txt'
 dropbox_move  'isp-ip-address' 'ip-address-time.txt'
 
-dropbox_mkdir 'speed-test' "$YESTERDAY_YEAR"
+
+dropbox_mkdir 'speed-test' "${YESTERDAY_YEAR}"
 
 dropbox_move 'speed-test' 'times.txt'
 dropbox_move 'speed-test' 'speedtest.txt'
@@ -72,7 +73,8 @@ dropbox_move 'speed-test' 'ping.txt'
 dropbox_move 'speed-test' 'download.txt'
 dropbox_move 'speed-test' 'upload.txt'
 
-dropbox_mkdir 'ping-test' "$YESTERDAY_YEAR"
+
+dropbox_mkdir 'ping-test' "${YESTERDAY_YEAR}"
 
 dropbox_move 'ping-test' 'wakeup.txt'
 dropbox_move 'ping-test' 'baseline.txt'
@@ -85,6 +87,3 @@ dropbox_move 'ping-test' 'baseline-loss.txt'
 
 dropbox_move 'ping-test' 'wakeup-time.txt'
 dropbox_move 'ping-test' 'baseline-time.txt'
-
-
-mv *.json 'dropbox-logs' 2> '/dev/null'
