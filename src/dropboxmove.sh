@@ -52,7 +52,7 @@ dropbox_move () {
   \"from_path\": \"${FROM_PATH}\",\
   \"to_path\": \"${TO_PATH}\",\
   \"allow_shared_folder\": true,\
-  \"autorename\": true}"\
+  \"autorename\": false}"\
   > "$(basename ${TO_PATH} .txt).json"\
   2> '/dev/null'
 }
