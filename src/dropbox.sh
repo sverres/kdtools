@@ -13,7 +13,7 @@ dropbox_upload () {
   UPLOAD_FILE="${1}"
 
   curl -X POST  'https://content.dropboxapi.com/2/files/upload' \
-  --header "Authorization: Bearer ${DROPBOX_TOKEN}"\
+  --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
   --header "Dropbox-API-Arg: { \
     \"path\": \"/${LOG_FOLDER}/${UPLOAD_FILE}\", \
     \"mode\": \"overwrite\", \

@@ -24,7 +24,7 @@ move_to_archive () {
   mkdir -p "${YESTERDAY_YEAR}"
 
   # sample mv command: mv 2017-01-ip-adress-time.txt 2017
-  mv "${YESTERDAY_YEAR}"-"${YESTERDAY_MONTH}"-*'.txt' "${YESTERDAY_YEAR}" \
+  mv "${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-"*.txt "${YESTERDAY_YEAR}" \
      2> '/dev/null'
 
   cd '..'
