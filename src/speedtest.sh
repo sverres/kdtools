@@ -6,7 +6,7 @@
 # sverre.stikbakke@ntnu.no 22.10.2016
 #
 
-cd "./Dropbox" 2> '/dev/null'
+cd './Dropbox' 2> '/dev/null'
 
 LOG_FOLDER='speed-test'
 

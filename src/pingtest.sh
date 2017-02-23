@@ -5,11 +5,11 @@
 # sverre.stikbakke@ntnu.no 02.05.2016
 #
 
-cd "./Dropbox" 2> '/dev/null'
+cd './Dropbox' 2> '/dev/null'
 
 
 # import ${PINGURL}
-source "./pingurl"
+source './pingurl'
 
 LOG_FOLDER='ping-test'
 
@@ -27,7 +27,7 @@ DAT_BASELINE_TIME="$(date +%Y-%m-baseline-time.txt)"
 
 TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 
-source "./dropbox.sh"
+source './dropbox.sh'
 
 which ping |grep system32 > /dev/null
 if [ ${?} -eq 0 ]  # grep return code: match = 0, not found = 1
@@ -61,14 +61,14 @@ cat 'wakeup.txt' >> \
   "${LOG_FOLDER}/${LOG_WAKEUP}"
 
 
-  echo '=================================' >> \
-    "${LOG_FOLDER}/${LOG_BASELINE}"
-  cat 'baseline_time.txt' >> \
-    "${LOG_FOLDER}/${LOG_BASELINE}"
-  echo '=================================' >> \
-    "${LOG_FOLDER}/${LOG_BASELINE}"
-  cat 'baseline.txt' >> \
-    "${LOG_FOLDER}/${LOG_BASELINE}"
+echo '=================================' >> \
+  "${LOG_FOLDER}/${LOG_BASELINE}"
+cat 'baseline_time.txt' >> \
+  "${LOG_FOLDER}/${LOG_BASELINE}"
+echo '=================================' >> \
+  "${LOG_FOLDER}/${LOG_BASELINE}"
+cat 'baseline.txt' >> \
+  "${LOG_FOLDER}/${LOG_BASELINE}"
 
 
 if [ ${PINGVERSION} -eq 32 ]

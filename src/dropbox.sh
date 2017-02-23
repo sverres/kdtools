@@ -6,7 +6,7 @@
 #
 
 # import ${DROPBOX_TOKEN}
-source "./dropbox_token"
+source './dropbox_token'
 
 dropbox_upload () {
   UPLOAD_FILE="${1}"
