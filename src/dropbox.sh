@@ -14,13 +14,13 @@ dropbox_upload () {
 
   curl -X POST  'https://content.dropboxapi.com/2/files/upload' \
   --header "Authorization: Bearer ${DROPBOX_TOKEN}"\
-  --header "Dropbox-API-Arg: {\
-    \"path\": \"/${LOG_FOLDER}/${UPLOAD_FILE}\",\
-    \"mode\": \"overwrite\",\
-    \"autorename\": false,\
-    \"mute\": true}"\
-  --header "Content-Type: application/octet-stream"\
-  --data-binary @"${LOG_FOLDER}/${UPLOAD_FILE}"\
-  > "$(basename ${UPLOAD_FILE} .txt).json"\
+  --header "Dropbox-API-Arg: { \
+    \"path\": \"/${LOG_FOLDER}/${UPLOAD_FILE}\", \
+    \"mode\": \"overwrite\", \
+    \"autorename\": false, \
+    \"mute\": true}" \
+  --header "Content-Type: application/octet-stream" \
+  --data-binary @"${LOG_FOLDER}/${UPLOAD_FILE}" \
+  > "$(basename ${UPLOAD_FILE} .txt).json" \
   2> '/dev/null'
 }

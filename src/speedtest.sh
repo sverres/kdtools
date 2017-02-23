@@ -43,13 +43,13 @@ echo "${TIME_NOW}" >> "${LOG_FOLDER}/${LOG_TIMES}"
 
 cat "${SPEEDTEST_TMP}" >> "${LOG_FOLDER}/${LOG_SPEEDTEST}"
 
-grep 'Ping' "${SPEEDTEST_TMP}" |awk -F' ' '{print $2 "\t" $3}' >> \
+grep 'Ping' "${SPEEDTEST_TMP}" | awk -F' ' '{print $2 "\t" $3}' >> \
      "${LOG_FOLDER}/${LOG_PING}"
 
-grep 'Download' "${SPEEDTEST_TMP}" |awk -F' ' '{print $3 "\t" $4}' >> \
+grep 'Download' "${SPEEDTEST_TMP}" | awk -F' ' '{print $3 "\t" $4}' >> \
      "${LOG_FOLDER}/${LOG_DOWNLOAD}"
 
-grep 'Upload' "${SPEEDTEST_TMP}" |awk -F' ' '{print $3 "\t" $4}'>> \
+grep 'Upload' "${SPEEDTEST_TMP}" | awk -F' ' '{print $3 "\t" $4}' >> \
      "${LOG_FOLDER}/${LOG_UPLOAD}"
 
 

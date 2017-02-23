@@ -32,7 +32,7 @@ DAT_BASELINE_TIME="$(date +%Y-%m-baseline-time.txt)"
 
 TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 
-if which ping |grep 'system32' > /dev/null
+if which ping | grep 'system32' > /dev/null
 then
   # echo windows
   PINGVERSION=32
@@ -76,11 +76,11 @@ then
   grep 'Average' 'baseline.txt' >> "${LOG_FOLDER}/${DAT_BASELINE}"
 else
   # from Linux ping output
-  grep rtt 'wakeup.txt' |\
-    cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|tr / " " >> \
+  grep rtt 'wakeup.txt' | \
+    cut -c 23-99 | cut -d / -f 1-4 | cut -d m -f 1 | tr / " " >> \
     "${LOG_FOLDER}/${DAT_WAKEUP}"
-  grep 'rtt' 'baseline.txt' |\
-    cut -c 23-99|cut -d / -f 1-4|cut -d m -f 1|tr / " " >> \
+  grep 'rtt' 'baseline.txt' | \
+    cut -c 23-99 | cut -d / -f 1-4 | cut -d m -f 1 | tr / " " >> \
     "${LOG_FOLDER}/${DAT_BASELINE}"
 fi
 

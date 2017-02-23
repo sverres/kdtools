@@ -27,9 +27,9 @@ dropbox_mkdir () {
   --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
   --header "Content-Type: application/json" \
   --data "{\
-  \"path\": \"${NEW_YEAR_PATH}\",\
-  \"autorename\": false}"\
-  > "${NEW_YEAR}-${FOLDER}.json"\
+  \"path\": \"${NEW_YEAR_PATH}\", \
+  \"autorename\": false}" \
+  > "${NEW_YEAR}-${FOLDER}.json" \
   2> '/dev/null'
 }
 
@@ -46,14 +46,14 @@ dropbox_move () {
   TO_PATH="${ARCHIVE_YEAR_PATH}${ARCHIVE_FILENAME}"
 
   curl -X POST 'https://api.dropboxapi.com/2/files/move' \
-  --header "Authorization: Bearer ${DROPBOX_TOKEN}"\
+  --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
   --header "Content-Type: application/json" \
-  --data "{\
-  \"from_path\": \"${FROM_PATH}\",\
-  \"to_path\": \"${TO_PATH}\",\
-  \"allow_shared_folder\": true,\
-  \"autorename\": false}"\
-  > "$(basename ${TO_PATH} .txt).json"\
+  --data "{ \
+  \"from_path\": \"${FROM_PATH}\", \
+  \"to_path\": \"${TO_PATH}\", \
+  \"allow_shared_folder\": true, \
+  \"autorename\": false}" \
+  > "$(basename ${TO_PATH} .txt).json" \
   2> '/dev/null'
 }
 

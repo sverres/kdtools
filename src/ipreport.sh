@@ -22,7 +22,7 @@ LOG_IP_ADDRESS_TIME="$(date +%Y-%m-ip-address-time.txt)"
 echo "--- IP-address files in subfolder ${LOG_FOLDER}"
 mkdir -p "${LOG_FOLDER}"
 
-curl -s -S 'myip.dnsomatic.com/login.asp' >> "${LOG_FOLDER}"/"${LOG_IP_ADDRESS}"
+curl -s -S 'myip.dnsomatic.com/login.asp' >> "${LOG_FOLDER}/${LOG_IP_ADDRESS}"
 date +'%a %B %e %T %Z %Y' >> "${LOG_FOLDER}/${LOG_IP_ADDRESS_TIME}"
 
 
