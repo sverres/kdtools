@@ -14,4 +14,5 @@ pingtest.sh       - report ping times: wakeup times and average times
 dropbox.sh        - dropbox_upload function
 monthlyarchive.sh - dropbox_move and dropbox_mkdir functons
 dropbox_token     - dropbox API token to be placed here
+pingurl           - host for ping test
 ```
