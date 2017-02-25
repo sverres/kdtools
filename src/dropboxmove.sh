@@ -13,6 +13,8 @@ cd './Dropbox' 2> '/dev/null'
 source './dropbox_token'
 
 
+LOG_DROPBOX='dropbox-logs'
+
 YESTERDAY_YEAR="$(date --date='15 days ago' +%Y)"
 YESTERDAY_MONTH="$(date --date='15 days ago' +%m)"
 
@@ -87,3 +89,6 @@ dropbox_move 'ping-test' 'baseline-loss.txt'
 
 dropbox_move 'ping-test' 'wakeup-time.txt'
 dropbox_move 'ping-test' 'baseline-time.txt'
+
+
+mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
