@@ -35,7 +35,7 @@ mkdir -p "${LOG_FOLDER}"
   echo '=================================='
   echo "${TIME_NOW}"
   echo '=================================='
-  ./pyspeedtest.py
+  ./pyspeedtest.py || exit 1
 } >> "${SPEEDTEST_TMP}"
 
 
@@ -59,6 +59,8 @@ dropbox_upload "${LOG_FOLDER}" "${LOG_PING}"
 dropbox_upload "${LOG_FOLDER}" "${LOG_DOWNLOAD}"
 dropbox_upload "${LOG_FOLDER}" "${LOG_UPLOAD}"
 
+
+mkdir -p "${LOG_DROPBOX}"
 mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
 
 

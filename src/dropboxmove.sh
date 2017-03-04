@@ -20,8 +20,8 @@ YESTERDAY_MONTH="$(date --date='15 days ago' +%m)"
 
 
 dropbox_mkdir () {
-  FOLDER="${1}"
-  NEW_YEAR="${2}"
+  local FOLDER="${1}"
+  local NEW_YEAR="${2}"
 
   NEW_YEAR_PATH="/${FOLDER}/${NEW_YEAR}"
 
@@ -37,8 +37,8 @@ dropbox_mkdir () {
 
 
 dropbox_move () {
-  FOLDER="${1}"
-  FILENAME="${2}"
+  local FOLDER="${1}"
+  local FILENAME="${2}"
 
   FROM_PATH="/${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-${FILENAME}"
 
@@ -66,6 +66,11 @@ dropbox_move  'isp-ip-address' 'ip-address.txt'
 dropbox_move  'isp-ip-address' 'ip-address-time.txt'
 
 
+dropbox_mkdir 'adm-url' "${YESTERDAY_YEAR}"
+
+dropbox_move  'adm-url' 'adm-url.txt'
+
+
 dropbox_mkdir 'speed-test' "${YESTERDAY_YEAR}"
 
 dropbox_move 'speed-test' 'times.txt'
@@ -91,6 +96,7 @@ dropbox_move 'ping-test' 'wakeup-time.txt'
 dropbox_move 'ping-test' 'baseline-time.txt'
 
 
+mkdir -p "${LOG_DROPBOX}"
 mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
 
 

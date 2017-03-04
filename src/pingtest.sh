@@ -104,6 +104,8 @@ dropbox_upload "${LOG_FOLDER}" "${DAT_BASELINE_LOSS}"
 dropbox_upload "${LOG_FOLDER}" "${DAT_WAKEUP_TIME}"
 dropbox_upload "${LOG_FOLDER}" "${DAT_BASELINE_TIME}"
 
+
+mkdir -p "${LOG_DROPBOX}"
 mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
 
 
