@@ -8,10 +8,10 @@
 cd './Dropbox' 2> '/dev/null'
 
 # import ${PINGURL}
-source './pingurl'
+source './pingurl' || exit 1
 
 # import dropbox_upload function
-source './dropbox.sh'
+source './dropbox.sh' || exit 1
 
 
 LOG_FOLDER='ping-test'
@@ -84,6 +84,7 @@ else
     "${LOG_FOLDER}/${DAT_BASELINE}"
 fi
 
+
 grep 'loss' 'wakeup.txt'  >> "${LOG_FOLDER}/${DAT_WAKEUP_LOSS}"
 grep 'loss' 'baseline.txt'  >> "${LOG_FOLDER}/${DAT_BASELINE_LOSS}"
 
@@ -91,16 +92,19 @@ cat 'wakeup_time.txt' >> "${LOG_FOLDER}/${DAT_WAKEUP_TIME}"
 cat 'baseline_time.txt' >> "${LOG_FOLDER}/${DAT_BASELINE_TIME}"
 
 
-dropbox_upload "${LOG_WAKEUP}"
-dropbox_upload "${LOG_BASELINE}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_WAKEUP}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_BASELINE}"
 
-dropbox_upload "${DAT_WAKEUP}"
-dropbox_upload "${DAT_BASELINE}"
+dropbox_upload "${LOG_FOLDER}" "${DAT_WAKEUP}"
+dropbox_upload "${LOG_FOLDER}" "${DAT_BASELINE}"
 
-dropbox_upload "${DAT_WAKEUP_LOSS}"
-dropbox_upload "${DAT_BASELINE_LOSS}"
+dropbox_upload "${LOG_FOLDER}" "${DAT_WAKEUP_LOSS}"
+dropbox_upload "${LOG_FOLDER}" "${DAT_BASELINE_LOSS}"
 
-dropbox_upload "${DAT_WAKEUP_TIME}"
-dropbox_upload "${DAT_BASELINE_TIME}"
+dropbox_upload "${LOG_FOLDER}" "${DAT_WAKEUP_TIME}"
+dropbox_upload "${LOG_FOLDER}" "${DAT_BASELINE_TIME}"
 
 mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+
+
+exit 0

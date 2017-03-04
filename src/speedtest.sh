@@ -9,7 +9,7 @@
 cd './Dropbox' 2> '/dev/null'
 
 # import dropbox_upload function
-source './dropbox.sh'
+source './dropbox.sh' || exit 1
 
 
 LOG_FOLDER='speed-test'
@@ -53,10 +53,13 @@ grep 'Upload' "${SPEEDTEST_TMP}" | awk -F' ' '{print $3 "\t" $4}' >> \
      "${LOG_FOLDER}/${LOG_UPLOAD}"
 
 
-dropbox_upload "${LOG_TIMES}"
-dropbox_upload "${LOG_SPEEDTEST}"
-dropbox_upload "${LOG_PING}"
-dropbox_upload "${LOG_DOWNLOAD}"
-dropbox_upload "${LOG_UPLOAD}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_TIMES}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_SPEEDTEST}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_PING}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_DOWNLOAD}"
+dropbox_upload "${LOG_FOLDER}" "${LOG_UPLOAD}"
 
 mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+
+
+exit 0

@@ -10,7 +10,7 @@
 cd './Dropbox' 2> '/dev/null'
 
 # import ${DROPBOX_TOKEN}
-source './dropbox_token'
+source './dropbox_token' || exit 1
 
 
 LOG_DROPBOX='dropbox-logs'
@@ -92,3 +92,6 @@ dropbox_move 'ping-test' 'baseline-time.txt'
 
 
 mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+
+
+exit 0

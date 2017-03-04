@@ -15,7 +15,7 @@ YESTERDAY_MONTH=$(date --date='15 days ago' +%m)
 
 
 move_to_archive () {
-  LOG_FOLDER="${1}"
+  local LOG_FOLDER="${1}"
 
   mkdir -p "${LOG_FOLDER}"
 
@@ -34,3 +34,6 @@ move_to_archive () {
 move_to_archive 'isp-ip-address'
 move_to_archive 'ping-test'
 move_to_archive 'speed-test'
+
+
+exit 0

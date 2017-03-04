@@ -6,11 +6,12 @@
 #
 
 # import ${DROPBOX_TOKEN}
-source './dropbox_token'
+source './dropbox_token'  || exit 1
 
 
 dropbox_upload () {
-  UPLOAD_FILE="${1}"
+  local LOG_FOLDER="${1}"
+  local UPLOAD_FILE="${2}"
 
   curl -X POST  'https://content.dropboxapi.com/2/files/upload' \
   --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
