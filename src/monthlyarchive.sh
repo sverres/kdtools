@@ -32,6 +32,7 @@ move_to_archive () {
 
 
 move_to_archive 'isp-ip-address'
+move_to_archive 'adm-url'
 move_to_archive 'ping-test'
 move_to_archive 'speed-test'
 
