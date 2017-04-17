@@ -17,18 +17,23 @@ source './dropbox.sh' || exit 1
 LOG_FOLDER='ping-test'
 LOG_DROPBOX='dropbox-logs'
 
+# Output like:
+# Mon April 17 23:40:42 WEDT 2017
+DATESTRING='%a %B %e %T %Z %Y'
 
-LOG_WAKEUP="$(date +%Y-%m-wakeup.txt)"
-LOG_BASELINE="$(date +%Y-%m-baseline.txt)"
+LOG_MONTH="$(date +%Y-%m)"
 
-DAT_WAKEUP="$(date +%Y-%m-wakeup-dat.txt)"
-DAT_BASELINE="$(date +%Y-%m-baseline-dat.txt)"
+LOG_WAKEUP="${LOG_MONTH}-wakeup.txt"
+LOG_BASELINE="${LOG_MONTH}-baseline.txt"
 
-DAT_WAKEUP_LOSS="$(date +%Y-%m-wakeup-loss.txt)"
-DAT_BASELINE_LOSS="$(date +%Y-%m-baseline-loss.txt)"
+DAT_WAKEUP="${LOG_MONTH}-wakeup-dat.txt"
+DAT_BASELINE="${LOG_MONTH}-baseline-dat.txt"
 
-DAT_WAKEUP_TIME="$(date +%Y-%m-wakeup-time.txt)"
-DAT_BASELINE_TIME="$(date +%Y-%m-baseline-time.txt)"
+DAT_WAKEUP_LOSS="${LOG_MONTH}-wakeup-loss.txt"
+DAT_BASELINE_LOSS="${LOG_MONTH}-baseline-loss.txt"
+
+DAT_WAKEUP_TIME="${LOG_MONTH}-wakeup-time.txt"
+DAT_BASELINE_TIME="${LOG_MONTH}-baseline-time.txt"
 
 TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 
@@ -48,10 +53,10 @@ echo "--- Pingtest running, started at ${TIME_NOW}"
 mkdir -p "${LOG_FOLDER}"
 
 ping "${PINGOPTION}" 3 "${PINGURL}" > 'wakeup.txt'
-date +'%a %B %e %T %Z %Y' > 'wakeup_time.txt'
-sleep 2
+date +"${DATESTRING}" > 'wakeup_time.txt'
+sleep 5
 ping "${PINGOPTION}" 20 "${PINGURL}" > 'baseline.txt'
-date +'%a %B %e %T %Z %Y' > 'baseline_time.txt'
+date +"${DATESTRING}" > 'baseline_time.txt'
 
 
 {

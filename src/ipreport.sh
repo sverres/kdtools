@@ -18,11 +18,12 @@ LOG_FOLDER='isp-ip-address'
 LOG_DROPBOX='dropbox-logs'
 ADM_URL_FOLDER='adm-url'
 
+LOG_MONTH="$(date +%Y-%m)"
 
-LOG_IP_ADDRESS="$(date +%Y-%m-ip-address.txt)"
-LOG_IP_ADDRESS_TIME="$(date +%Y-%m-ip-address-time.txt)"
-LOG_IP_ADDRESS_LAST_24="$(date +%Y-%m-ip-address-last-24.txt)"
-LOG_ADM_URL="$(date +%Y-%m-adm-url.txt)"
+LOG_IP_ADDRESS="${LOG_MONTH}-ip-address.txt"
+LOG_IP_ADDRESS_TIME="${LOG_MONTH}-ip-address-time.txt"
+LOG_IP_ADDRESS_LAST_24="${LOG_MONTH}-ip-address-last-24.txt"
+LOG_ADM_URL="${LOG_MONTH}-adm-url.txt"
 
 
 echo "--- IP-address files in subfolder ${LOG_FOLDER}"
@@ -33,10 +34,14 @@ mkdir -p "${LOG_FOLDER}"
   echo
 } >> "${LOG_FOLDER}/${LOG_IP_ADDRESS}"
 
+# Output like:
+# Mon April 17 23:06:42 WEDT 2017
 date +'%a %B %e %T %Z %Y' >> "${LOG_FOLDER}/${LOG_IP_ADDRESS_TIME}"
 
 sleep 15
 
+# Output like:
+# 81.191.94.60    AS2116 Broadnet AS      Mon April 17 23:10:43 WEDT 2017
 paste <(curl -s http://ipinfo.io/ip) <(curl -s http://ipinfo.io/org) \
   <(date +'%a %B %e %T %Z %Y') >> 'ipinfo.txt'
 
@@ -54,6 +59,8 @@ mkdir -p "${ADM_URL_FOLDER}"
 PROTOCOL='https://'
 CURRENT_IP=$(tail -n 1 < "${LOG_FOLDER}/${LOG_IP_ADDRESS}")
 
+# Output like:
+# https://46.66.184.43:55555
 echo "${PROTOCOL}${CURRENT_IP}:${ADM_PORT}" >> \
   "${ADM_URL_FOLDER}/${LOG_ADM_URL}"
 
