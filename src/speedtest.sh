@@ -36,7 +36,7 @@ mkdir -p "${LOG_FOLDER}"
   echo "${TIME_NOW}"
   echo '=================================='
   ./pyspeedtest.py || exit 1
-} >> "${SPEEDTEST_TMP}"
+} > "${SPEEDTEST_TMP}"
 
 
 echo "${TIME_NOW}" >> "${LOG_FOLDER}/${LOG_TIMES}"

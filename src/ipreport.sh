@@ -35,16 +35,15 @@ mkdir -p "${LOG_FOLDER}"
 
 date +'%a %B %e %T %Z %Y' >> "${LOG_FOLDER}/${LOG_IP_ADDRESS_TIME}"
 
-{
-  date +'%a %B %e %T %Z %Y'
-  curl -s -S 'ipinfo.io'
-  echo
-} >> 'ipinfo.txt'
+sleep 15
 
-tail -n 264 < 'ipinfo.txt' > "${LOG_FOLDER}/${LOG_IP_ADDRESS_LAST_24}"
+paste <(curl -s http://ipinfo.io/ip) <(curl -s http://ipinfo.io/org) \
+  <(date +'%a %B %e %T %Z %Y') >> 'ipinfo.txt'
 
-# Delete all but 100 last ipinfos
-tail -n 1100 < 'ipinfo.txt' > tmpfile
+tail -n 24 < 'ipinfo.txt' > "${LOG_FOLDER}/${LOG_IP_ADDRESS_LAST_24}"
+
+# Delete all but 10 last days ipinfos
+tail -n 240 < 'ipinfo.txt' > tmpfile
 cat tmpfile > 'ipinfo.txt'
 rm tmpfile
 
@@ -67,7 +66,7 @@ dropbox_upload "${ADM_URL_FOLDER}" "${LOG_ADM_URL}"
 
 
 mkdir -p "${LOG_DROPBOX}"
-mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+mv ./*.json  "${LOG_DROPBOX}" 2> '/dev/null'
 
 
 exit 0
