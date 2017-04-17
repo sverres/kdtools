@@ -61,7 +61,7 @@ dropbox_upload "${LOG_FOLDER}" "${LOG_UPLOAD}"
 
 
 mkdir -p "${LOG_DROPBOX}"
-mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+mv ./*.json  "${LOG_DROPBOX}" 2> '/dev/null'
 
 
 exit 0
