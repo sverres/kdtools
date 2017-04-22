@@ -64,6 +64,7 @@ dropbox_mkdir 'isp-ip-address' "${YESTERDAY_YEAR}"
 
 dropbox_move  'isp-ip-address' 'ip-address.txt'
 dropbox_move  'isp-ip-address' 'ip-address-time.txt'
+dropbox_move  'isp-ip-address' 'ip-address-last-24.txt'
 
 
 dropbox_mkdir 'adm-url' "${YESTERDAY_YEAR}"
