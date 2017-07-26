@@ -6,11 +6,12 @@
 # sverre.stikbakke@ntnu.no 22.10.2016
 #
 
-cd './Dropbox' 2> '/dev/null'
+cd './Dropbox' 2> '/dev/null' || \
+    { echo "Missing Dropbox folder"; exit 1; }
 
 # import dropbox_upload function
-source './dropbox.sh' || exit 1
-
+source './dropbox.sh' || \
+    { echo "Missing dropbox.sh"; exit 1; }
 
 LOG_FOLDER='speed-test'
 LOG_DROPBOX='dropbox-logs'

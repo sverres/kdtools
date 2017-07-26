@@ -7,7 +7,8 @@
 # sverre.stikbakke@ntnu.no 11.02.2017
 #
 
-cd './Dropbox' 2> '/dev/null'
+cd './Dropbox' 2> '/dev/null' || \
+    { echo "Missing Dropbox folder"; exit 1; }
 
 
 YESTERDAY_YEAR=$(date --date='15 days ago' +%Y)

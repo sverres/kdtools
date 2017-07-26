@@ -7,11 +7,12 @@
 # sverre.stikbakke@ntnu.no 11.02.2017
 #
 
-cd './Dropbox' 2> '/dev/null'
+cd './Dropbox' 2> '/dev/null' || \
+    { echo "Missing Dropbox folder"; exit 1; }
 
 # import ${DROPBOX_TOKEN}
-source './dropbox_token' || exit 1
-
+source './dropbox_token' || \
+    { echo "Missing dropbox_token file"; exit 1; }
 
 LOG_DROPBOX='dropbox-logs'
 

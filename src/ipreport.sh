@@ -2,18 +2,22 @@
 #
 # log external IP address to files
 # - as plain IP address
+# - as IP and ISP info - last 24h
 # - as url for admin access to router
 # 
 # sverre.stikbakke@ntnu.no 02.05.2016
 #
 
-cd './Dropbox' 2> '/dev/null'
+cd './Dropbox' 2> '/dev/null' || \
+    { echo "Missing Dropbox folder"; exit 1; }
 
 # import dropbox_upload function
-source './dropbox.sh' || exit 1
+source './dropbox.sh' || \
+    { echo "Missing dropbox.sh"; exit 1; }
 
 # import ${ADM_PORT}
-source './adm_port' || exit 1
+source './adm_port' || \
+    { echo "Missing adm_port file"; exit 1; }
 
 
 LOG_FOLDER='isp-ip-address'
@@ -49,7 +53,7 @@ paste <(curl -s http://ipinfo.io/ip) <(curl -s http://ipinfo.io/org) \
 
 tail -n 24 < 'ipinfo.txt' > "${LOG_FOLDER}/${LOG_IP_ADDRESS_LAST_24}"
 
-# Delete all but 10 last days ipinfos
+# Delete all but 10 last days ipinfo (no Dropbox upload of this file)
 tail -n 240 < 'ipinfo.txt' > tmpfile
 cat tmpfile > 'ipinfo.txt'
 rm tmpfile

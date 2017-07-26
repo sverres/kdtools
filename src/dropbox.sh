@@ -7,7 +7,8 @@
 #
 
 # import ${DROPBOX_TOKEN}
-source './dropbox_token'  || exit 1
+source './dropbox_token'  || \
+    { echo "Missing dropbox_token file"; exit 1; }
 
 
 dropbox_upload () {
