@@ -12,11 +12,11 @@ cd './Dropbox' 2> '/dev/null' || \
     { echo "Missing Dropbox folder"; exit 1; }
 
 # import dropbox_upload function
-source './dropbox.sh' || \
+source './dropbox.sh' 2> '/dev/null' || \
     { echo "Missing dropbox.sh"; exit 1; }
 
 # import ${ADM_PORT}
-source './adm_port' || \
+source './adm_port' 2> '/dev/null' || \
     { echo "Missing adm_port file"; exit 1; }
 
 

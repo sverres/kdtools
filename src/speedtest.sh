@@ -10,7 +10,7 @@ cd './Dropbox' 2> '/dev/null' || \
     { echo "Missing Dropbox folder"; exit 1; }
 
 # import dropbox_upload function
-source './dropbox.sh' || \
+source './dropbox.sh' 2> '/dev/null' || \
     { echo "Missing dropbox.sh"; exit 1; }
 
 LOG_FOLDER='speed-test'
@@ -32,14 +32,17 @@ TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 echo "--- Speedtest running, started at ${TIME_NOW}"
 mkdir -p "${LOG_FOLDER}"
 
-{
-  echo ''
-  echo '=================================='
-  echo "${TIME_NOW}"
-  echo '=================================='
-  ./pyspeedtest.py || exit 1
-} > "${SPEEDTEST_TMP}"
-
+if [ -e ./pyspeedtest.py ]; then
+    {
+        echo ''
+        echo '=================================='
+        echo "${TIME_NOW}"
+        echo '=================================='
+        ./pyspeedtest.py
+    } > "${SPEEDTEST_TMP}"
+else
+    { echo "Missing pyspeedtest.py"; exit 1; }
+fi
 
 echo "${TIME_NOW}" >> "${LOG_FOLDER}/${LOG_TIMES}"
 

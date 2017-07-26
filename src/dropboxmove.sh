@@ -11,7 +11,7 @@ cd './Dropbox' 2> '/dev/null' || \
     { echo "Missing Dropbox folder"; exit 1; }
 
 # import ${DROPBOX_TOKEN}
-source './dropbox_token' || \
+source './dropbox_token' 2> '/dev/null' || \
     { echo "Missing dropbox_token file"; exit 1; }
 
 LOG_DROPBOX='dropbox-logs'

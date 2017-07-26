@@ -9,11 +9,11 @@ cd './Dropbox' 2> '/dev/null' || \
     { echo "Missing Dropbox folder"; exit 1; }
 
 # import ${PINGURL}
-source './pingurl' || \
+source './pingurl' 2> '/dev/null' || \
     { echo "Missing pingurl file"; exit 1 ; }
 
 # import dropbox_upload function
-source './dropbox.sh' || \
+source './dropbox.sh' 2> '/dev/null' || \
     { echo "Missing dropbox.sh"; exit 1; }
 
 
