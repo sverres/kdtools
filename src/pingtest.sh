@@ -10,7 +10,7 @@ cd './Dropbox' 2> '/dev/null' || \
 
 # import ${PINGURL}
 source './pingurl' || \
-    { echo "Missing pingurl file"; exit 1 ;}
+    { echo "Missing pingurl file"; exit 1 ; }
 
 # import dropbox_upload function
 source './dropbox.sh' || \
