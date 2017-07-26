@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# upload file to Dropbox
+# upload file to folder on Dropbox
+# using Dropbox API v2
 #
 # sverre.stikbakke@ntnu.no 03.05.2016
 #
@@ -10,18 +11,20 @@ source './dropbox_token'  || exit 1
 
 
 dropbox_upload () {
-  local LOG_FOLDER="${1}"
-  local UPLOAD_FILE="${2}"
+  local FOLDER="${1}"
+  local FILE="${2}"
+
+  local JOB_LOG="$(basename ${FILE} .txt).json"
 
   curl -X POST  'https://content.dropboxapi.com/2/files/upload' \
   --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
   --header "Dropbox-API-Arg: { \
-    \"path\": \"/${LOG_FOLDER}/${UPLOAD_FILE}\", \
+    \"path\": \"/${FOLDER}/${FILE}\", \
     \"mode\": \"overwrite\", \
     \"autorename\": false, \
     \"mute\": true}" \
   --header "Content-Type: application/octet-stream" \
-  --data-binary @"${LOG_FOLDER}/${UPLOAD_FILE}" \
-  > "$(basename ${UPLOAD_FILE} .txt).json" \
+  --data-binary @"${FOLDER}/${FILE}" \
+  > "${JOB_LOG}" \
   2> '/dev/null'
 }

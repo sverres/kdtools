@@ -21,17 +21,18 @@ YESTERDAY_MONTH="$(date --date='15 days ago' +%m)"
 
 dropbox_mkdir () {
   local FOLDER="${1}"
-  local NEW_YEAR="${2}"
-
-  NEW_YEAR_PATH="/${FOLDER}/${NEW_YEAR}"
+  local YEAR="${2}"
+  
+  local ARCHIVE_PATH="/${FOLDER}/${YEAR}"
+  local JOB_LOG="${YEAR}-${FOLDER}.json"
 
   curl -X POST 'https://api.dropboxapi.com/2/files/create_folder' \
   --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
   --header "Content-Type: application/json" \
   --data "{\
-  \"path\": \"${NEW_YEAR_PATH}\", \
+  \"path\": \"${ARCHIVE_PATH}\", \
   \"autorename\": false}" \
-  > "${NEW_YEAR}-${FOLDER}.json" \
+  > "${JOB_LOG}" \
   2> '/dev/null'
 }
 
@@ -40,12 +41,14 @@ dropbox_move () {
   local FOLDER="${1}"
   local FILENAME="${2}"
 
-  FROM_PATH="/${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-${FILENAME}"
+  local FROM_PATH="/${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-${FILENAME}"
 
-  ARCHIVE_YEAR_PATH="/${FOLDER}/${YESTERDAY_YEAR}/"
-  ARCHIVE_FILENAME="${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-${FILENAME}"
+  local ARCHIVE_YEAR_PATH="/${FOLDER}/${YESTERDAY_YEAR}/"
+  local ARCHIVE_FILENAME="${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-${FILENAME}"
 
-  TO_PATH="${ARCHIVE_YEAR_PATH}${ARCHIVE_FILENAME}"
+  local TO_PATH="${ARCHIVE_YEAR_PATH}${ARCHIVE_FILENAME}"
+
+  local JOB_LOG="$(basename ${TO_PATH} .txt).json"
 
   curl -X POST 'https://api.dropboxapi.com/2/files/move' \
   --header "Authorization: Bearer ${DROPBOX_TOKEN}" \
@@ -55,7 +58,7 @@ dropbox_move () {
   \"to_path\": \"${TO_PATH}\", \
   \"allow_shared_folder\": true, \
   \"autorename\": false}" \
-  > "$(basename ${TO_PATH} .txt).json" \
+  > "${JOB_LOG}" \
   2> '/dev/null'
 }
 

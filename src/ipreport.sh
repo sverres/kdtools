@@ -1,7 +1,9 @@
 #!/bin/bash
 #
-# log external IP address to file
-#
+# log external IP address to files
+# - as plain IP address
+# - as url for admin access to router
+# 
 # sverre.stikbakke@ntnu.no 02.05.2016
 #
 
