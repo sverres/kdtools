@@ -21,7 +21,7 @@ source './adm_port' 2> '/dev/null' || \
 
 
 LOG_FOLDER='isp-ip-address'
-LOG_DROPBOX='dropbox-logs'
+JOB_LOG_FOLDER='dropbox-logs'
 ADM_URL_FOLDER='adm-url'
 
 LOG_MONTH="$(date +%Y-%m)"
@@ -78,8 +78,8 @@ dropbox_upload "${LOG_FOLDER}" "${LOG_IP_ADDRESS_LAST_24}"
 dropbox_upload "${ADM_URL_FOLDER}" "${LOG_ADM_URL}"
 
 
-mkdir -p "${LOG_DROPBOX}"
-mv ./*.json  "${LOG_DROPBOX}" 2> '/dev/null'
+mkdir -p "${JOB_LOG_FOLDER}"
+mv ./*.json  "${JOB_LOG_FOLDER}" 2> '/dev/null'
 
 
 exit 0

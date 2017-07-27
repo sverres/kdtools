@@ -3,6 +3,7 @@
 # move log files on Dropbox to archive folder
 #
 # run by cron the 1st of every month
+# (or within first 14 days of each new month)
 #
 # sverre.stikbakke@ntnu.no 11.02.2017
 #
@@ -14,7 +15,7 @@ cd './Dropbox' 2> '/dev/null' || \
 source './dropbox_token' 2> '/dev/null' || \
     { echo "Missing dropbox_token file"; exit 1; }
 
-LOG_DROPBOX='dropbox-logs'
+JOB_LOG_FOLDER='dropbox-logs'
 
 YESTERDAY_YEAR="$(date --date='15 days ago' +%Y)"
 YESTERDAY_MONTH="$(date --date='15 days ago' +%m)"
@@ -101,8 +102,8 @@ dropbox_move 'ping-test' 'wakeup-time.txt'
 dropbox_move 'ping-test' 'baseline-time.txt'
 
 
-mkdir -p "${LOG_DROPBOX}"
-mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+mkdir -p "${JOB_LOG_FOLDER}"
+mv ./*.json  ${JOB_LOG_FOLDER} 2> '/dev/null'
 
 
 exit 0

@@ -18,7 +18,7 @@ source './dropbox.sh' 2> '/dev/null' || \
 
 
 LOG_FOLDER='ping-test'
-LOG_DROPBOX='dropbox-logs'
+JOB_LOG_FOLDER='dropbox-logs'
 
 # Output like:
 # Mon April 17 23:40:42 WEDT 2017
@@ -77,8 +77,7 @@ date +"${DATESTRING}" > 'baseline_time.txt'
 } >> "${LOG_FOLDER}/${LOG_BASELINE}"
 
 
-if [ ${PINGVERSION} -eq 32 ]
-then
+if [ ${PINGVERSION} -eq 32 ]; then
   # from Windows ping output
   grep 'Average' 'wakeup.txt' >> "${LOG_FOLDER}/${DAT_WAKEUP}"
   grep 'Average' 'baseline.txt' >> "${LOG_FOLDER}/${DAT_BASELINE}"
@@ -113,8 +112,8 @@ dropbox_upload "${LOG_FOLDER}" "${DAT_WAKEUP_TIME}"
 dropbox_upload "${LOG_FOLDER}" "${DAT_BASELINE_TIME}"
 
 
-mkdir -p "${LOG_DROPBOX}"
-mv ./*.json  ${LOG_DROPBOX} 2> '/dev/null'
+mkdir -p "${JOB_LOG_FOLDER}"
+mv ./*.json  ${JOB_LOG_FOLDER} 2> '/dev/null'
 
 
 exit 0

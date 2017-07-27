@@ -3,6 +3,7 @@
 # move log files to archive folder
 #
 # run by cron the 1st of every month
+# (or within first 14 days of each new month)
 #
 # sverre.stikbakke@ntnu.no 11.02.2017
 #
@@ -19,9 +20,7 @@ move_to_archive () {
   local LOG_FOLDER="${1}"
 
   mkdir -p "${LOG_FOLDER}"
-
   cd "${LOG_FOLDER}"
-
   mkdir -p "${YESTERDAY_YEAR}"
 
   # sample mv command: mv 2017-01-ip-adress-time.txt 2017

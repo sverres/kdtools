@@ -14,7 +14,7 @@ source './dropbox.sh' 2> '/dev/null' || \
     { echo "Missing dropbox.sh"; exit 1; }
 
 LOG_FOLDER='speed-test'
-LOG_DROPBOX='dropbox-logs'
+JOB_LOG_FOLDER='dropbox-logs'
 
 LOG_MONTH="$(date +%Y-%m)"
 
@@ -65,8 +65,8 @@ dropbox_upload "${LOG_FOLDER}" "${LOG_DOWNLOAD}"
 dropbox_upload "${LOG_FOLDER}" "${LOG_UPLOAD}"
 
 
-mkdir -p "${LOG_DROPBOX}"
-mv ./*.json  "${LOG_DROPBOX}" 2> '/dev/null'
+mkdir -p "${JOB_LOG_FOLDER}"
+mv ./*.json  "${JOB_LOG_FOLDER}" 2> '/dev/null'
 
 
 exit 0
