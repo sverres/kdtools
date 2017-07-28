@@ -16,4 +16,5 @@ dropboxmove.sh    - dropbox_move and dropbox_mkdir functions
 monthlyarchive.sh - move local files to archive folder
 dropbox_token     - dropbox API token to be placed here
 pingurl           - host for ping test
+adm_port          - port number in admin url
 ```
