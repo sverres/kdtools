@@ -41,7 +41,7 @@ dropbox_mkdir () {
 
 dropbox_move () {
   local FOLDER="${1}"
-  local FILENAME="${2}"
+  local FILENAME="${2}"  # truncated - without date part
 
   local FROM_PATH="/${FOLDER}/${YESTERDAY_YEAR}-${YESTERDAY_MONTH}-${FILENAME}"
 
