@@ -9,7 +9,7 @@ Log files placed in Dropbox folder and uploaded using Dropbox API.
 
 ```code
 ipreport.sh       - report external IP address
-speedtest.sh      - report download speed
+speedtest.sh      - report upload and download speed
 pingtest.sh       - report ping times: wakeup times and average times
 dropbox.sh        - dropbox_upload function
 dropboxmove.sh    - dropbox_move and dropbox_mkdir functions
