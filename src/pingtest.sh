@@ -24,19 +24,19 @@ JOB_LOG_FOLDER='dropbox-logs'
 # Mon April 17 23:40:42 WEDT 2017
 DATESTRING='%a %B %e %T %Z %Y'
 
-LOG_MONTH="$(date +%Y-%m)"
+YEAR_MONTH="$(date +%Y-%m)"
 
-LOG_WAKEUP="${LOG_MONTH}-wakeup.txt"
-LOG_BASELINE="${LOG_MONTH}-baseline.txt"
+LOG_WAKEUP="${YEAR_MONTH}-wakeup.txt"
+LOG_BASELINE="${YEAR_MONTH}-baseline.txt"
 
-DAT_WAKEUP="${LOG_MONTH}-wakeup-dat.txt"
-DAT_BASELINE="${LOG_MONTH}-baseline-dat.txt"
+DAT_WAKEUP="${YEAR_MONTH}-wakeup-dat.txt"
+DAT_BASELINE="${YEAR_MONTH}-baseline-dat.txt"
 
-DAT_WAKEUP_LOSS="${LOG_MONTH}-wakeup-loss.txt"
-DAT_BASELINE_LOSS="${LOG_MONTH}-baseline-loss.txt"
+DAT_WAKEUP_LOSS="${YEAR_MONTH}-wakeup-loss.txt"
+DAT_BASELINE_LOSS="${YEAR_MONTH}-baseline-loss.txt"
 
-DAT_WAKEUP_TIME="${LOG_MONTH}-wakeup-time.txt"
-DAT_BASELINE_TIME="${LOG_MONTH}-baseline-time.txt"
+DAT_WAKEUP_TIME="${YEAR_MONTH}-wakeup-time.txt"
+DAT_BASELINE_TIME="${YEAR_MONTH}-baseline-time.txt"
 
 TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 

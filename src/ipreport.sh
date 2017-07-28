@@ -24,12 +24,12 @@ LOG_FOLDER='isp-ip-address'
 JOB_LOG_FOLDER='dropbox-logs'
 ADM_URL_FOLDER='adm-url'
 
-LOG_MONTH="$(date +%Y-%m)"
+YEAR_MONTH="$(date +%Y-%m)"
 
-LOG_IP_ADDRESS="${LOG_MONTH}-ip-address.txt"
-LOG_IP_ADDRESS_TIME="${LOG_MONTH}-ip-address-time.txt"
-LOG_IP_ADDRESS_LAST_24="${LOG_MONTH}-ip-address-last-24.txt"
-LOG_ADM_URL="${LOG_MONTH}-adm-url.txt"
+LOG_IP_ADDRESS="${YEAR_MONTH}-ip-address.txt"
+LOG_IP_ADDRESS_TIME="${YEAR_MONTH}-ip-address-time.txt"
+LOG_IP_ADDRESS_LAST_24="${YEAR_MONTH}-ip-address-last-24.txt"
+LOG_ADM_URL="${YEAR_MONTH}-adm-url.txt"
 
 
 echo "--- IP-address files in subfolder ${LOG_FOLDER}"

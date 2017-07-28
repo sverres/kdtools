@@ -16,13 +16,13 @@ source './dropbox.sh' 2> '/dev/null' || \
 LOG_FOLDER='speed-test'
 JOB_LOG_FOLDER='dropbox-logs'
 
-LOG_MONTH="$(date +%Y-%m)"
+YEAR_MONTH="$(date +%Y-%m)"
 
-LOG_TIMES="${LOG_MONTH}-times.txt"
-LOG_SPEEDTEST="${LOG_MONTH}-speedtest.txt"
-LOG_PING="${LOG_MONTH}-ping.txt"
-LOG_DOWNLOAD="${LOG_MONTH}-download.txt"
-LOG_UPLOAD="${LOG_MONTH}-upload.txt"
+LOG_TIMES="${YEAR_MONTH}-times.txt"
+LOG_SPEEDTEST="${YEAR_MONTH}-speedtest.txt"
+LOG_PING="${YEAR_MONTH}-ping.txt"
+LOG_DOWNLOAD="${YEAR_MONTH}-download.txt"
+LOG_UPLOAD="${YEAR_MONTH}-upload.txt"
 
 SPEEDTEST_TMP='speedtest.txt'
 
