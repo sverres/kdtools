@@ -31,10 +31,12 @@ mkdir -p "${LOG_FOLDER}"
 echo "--- Ratelimited speedtest running, started at ${TIME_NOW}"
 
 wget \
+  --output-file=ratelimit.txt
   --limit-rate="${RATE_IN_BYTES}" \
-  --report-speed=bits "${DOWNLOAD_URL_LARGE}" \
-  2> >(grep saved) \
-  >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
+  --report-speed=bits \
+  "${DOWNLOAD_URL_LARGE}"
+
+grep saved ratelimit.txt >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
 
 rm "${DOWNLOAD_URL_LARGE}" 2> /dev/null
 
