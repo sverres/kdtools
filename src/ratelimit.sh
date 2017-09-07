@@ -31,14 +31,14 @@ mkdir -p "${LOG_FOLDER}"
 echo "--- Ratelimited speedtest running, started at ${TIME_NOW}"
 
 wget \
-  --output-file=ratelimit.txt
+  --output-file=ratelimit.txt \
   --limit-rate="${RATE_IN_BYTES}" \
   --report-speed=bits \
   "${DOWNLOAD_URL_LARGE}"
 
 grep saved ratelimit.txt >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
 
-rm "${DOWNLOAD_URL_LARGE}" 2> /dev/null
+rm 43mb.iso 2> /dev/null
 
 dropbox_upload "${LOG_FOLDER}" "${LOG_RATELIMIT}"
 
