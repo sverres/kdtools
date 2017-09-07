@@ -36,6 +36,7 @@ wget \
   2> >(grep saved) \
   >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
 
+rm "${DOWNLOAD_URL_LARGE}" 2> /dev/null
 
 dropbox_upload "${LOG_FOLDER}" "${LOG_RATELIMIT}"
 
