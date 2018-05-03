@@ -15,7 +15,7 @@ source './dropbox.sh' 2> '/dev/null' || \
 LOG_FOLDER='speed-test'
 JOB_LOG_FOLDER='dropbox-logs'
 
-DOWNLOAD_URL_LARGE='http://sverres.net/dsl/'
+DOWNLOAD_URL='http://sverres.net/dsl/'
 LARGE_FILE='43mb.iso'
 MEDIUM_FILE='9124kb.zip'
 
