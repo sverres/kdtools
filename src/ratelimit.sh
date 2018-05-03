@@ -41,7 +41,7 @@ wget \
 
 grep 'saved' ratelimit.txt >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
 
-rm ${DOWNLOAD_FILE}" 2> '/dev/null'
+rm "${DOWNLOAD_FILE}" 2> '/dev/null'
 
 dropbox_upload "${LOG_FOLDER}" "${LOG_RATELIMIT}"
 
