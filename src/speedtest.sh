@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# test download speed using speedtest.py
-# from https://github.com/sivel/speedtest-cli
+# test download speed using speedtest
+# from https://www.speedtest.net/apps/cli
 #
 # sverre.stikbakke@ntnu.no 22.10.2016
 #
@@ -31,26 +31,26 @@ TIME_NOW="$(date +'%a %B %e %T %Z %Y')"
 echo "--- Speedtest running, started at ${TIME_NOW}"
 mkdir -p "${LOG_FOLDER}"
 
-if [ -e ./speedtest.py ]; then
+if [ -e ./speedtest ]; then
     {
         echo ''
         echo '=================================='
         echo "${TIME_NOW}"
         echo '=================================='
-        ./speedtest.py
+        ./speedtest
     } > "${SPEEDTEST_TMP}"
 else
-    { echo "Missing speedtest.py"; exit 1; }
+    { echo "Missing speedtest"; exit 1; }
 fi
 
 echo "${TIME_NOW}" >> "${LOG_FOLDER}/${LOG_TIMES}"
 
 cat "${SPEEDTEST_TMP}" >> "${LOG_FOLDER}/${LOG_SPEEDTEST}"
 
-grep 'Download' "${SPEEDTEST_TMP}" | awk -F' ' '{print $2 "\t" $3}' >> \
+grep 'Download' "${SPEEDTEST_TMP}" | awk -F' ' '{print $3}' >> \
      "${LOG_FOLDER}/${LOG_DOWNLOAD}"
 
-grep 'Upload' "${SPEEDTEST_TMP}" | awk -F' ' '{print $2 "\t" $3}' >> \
+grep 'Upload' "${SPEEDTEST_TMP}" | awk -F' ' '{print $3}' >> \
      "${LOG_FOLDER}/${LOG_UPLOAD}"
 
 

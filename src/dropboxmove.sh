@@ -85,6 +85,7 @@ dropbox_move 'speed-test' 'ping.txt'
 
 dropbox_move 'speed-test' 'download.txt'
 dropbox_move 'speed-test' 'upload.txt'
+dropbox_move 'speed-test' 'ratelimit.txt'
 
 
 dropbox_mkdir 'ping-test' "${YESTERDAY_YEAR}"

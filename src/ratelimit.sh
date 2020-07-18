@@ -20,7 +20,7 @@ LARGE_FILE='43mb.iso'
 MEDIUM_FILE='9124kb.zip'
 
 DOWNLOAD_FILE="${MEDIUM_FILE}"
-RATE_IN_BYTES='500k'
+RATE_IN_BYTES='3200k'
 
 YEAR_MONTH="$(date +%Y-%m)"
 
@@ -39,7 +39,7 @@ wget \
   --report-speed=bits \
   "${DOWNLOAD_URL}${DOWNLOAD_FILE}"
 
-grep 'saved' ratelimit.txt >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
+grep 'lagret' ratelimit.txt >> "${LOG_FOLDER}/${LOG_RATELIMIT}"
 
 rm "${DOWNLOAD_FILE}" 2> '/dev/null'
 
