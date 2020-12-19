@@ -35,10 +35,7 @@ LOG_ADM_URL="${YEAR_MONTH}-adm-url.txt"
 echo "--- IP-address files in subfolder ${LOG_FOLDER}"
 mkdir -p "${LOG_FOLDER}"
 
-{
-  curl -s -S 'myip.dnsomatic.com/login.asp'
-  echo
-} >> "${LOG_FOLDER}/${LOG_IP_ADDRESS}"
+curl -s http://ipinfo.io/ip >> "${LOG_FOLDER}/${LOG_IP_ADDRESS}"
 
 # Output like:
 # Mon April 17 23:06:42 WEDT 2017
